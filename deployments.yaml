@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-petclinic
+  namespace: spc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-petclinic
+  template:
+    metadata:
+      labels:
+        app: spring-petclinic
+    spec:
+      imagePullSecrets:
+        - name: container-registry
+      containers:
+        - name: spring-petclinic
+          image: el3rq16k.kr.private-ncr.ntruss.com/spring-petclinic:latest   # 또는 레지스트리 주소
+          ports:
+            - containerPort: 8080
